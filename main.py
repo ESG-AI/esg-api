@@ -1,12 +1,13 @@
+import shutil
 from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
 import os
 import uvicorn
 from dotenv import load_dotenv
 from pydantic import BaseModel
 import google.generativeai as genai
 from typing import List
-from pypdf import PdfReader
+from pdf2image import convert_from_path
+from ocr_service import extract_text_from_pdf
 
 load_dotenv()
 
@@ -23,10 +24,25 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 @app.get("/")
 def read_root():
     return {"message": "Hello, ESG Scoring API is running!"}
-# add a comment
+
+@app.post("/upload_pdf/")
+async def upload_pdf(file: UploadFile = File(...)):
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
+
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    extracted_text = extract_text_from_pdf(file_path)
+
+    return {
+        "filename": file.filename,
+        "extracted_text": extracted_text
+    }
+
 @app.post("/upload/")
 async def upload_pdfs(files: List[UploadFile] = File(...)):
     uploaded_files = []
+    extracted_texts = {}
 
     for file in files:
         file_path = os.path.join(UPLOAD_DIR, file.filename)
@@ -35,8 +51,13 @@ async def upload_pdfs(files: List[UploadFile] = File(...)):
             buffer.write(await file.read())
 
         uploaded_files.append(file.filename)
+        extracted_texts[file.filename] = extract_text_from_pdf(file_path)
 
-    return {"uploaded_files": uploaded_files, "message": "Files uploaded successfully!"}
+    return {
+        "uploaded_files": uploaded_files, 
+        "extracted_texts": extracted_texts,
+        "message": "Files uploaded successfully!"
+    }
 
 @app.post("/analyze/")
 async def analyze_text(request: AnalyzeRequest):
