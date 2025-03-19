@@ -1,0 +1,57 @@
+{
+    "GRI 2-29": {
+      "pillar": "D",
+      "description": "Stakeholder engagement reporting",
+      "keywords": ["stakeholder", "pemangku kepentingan", "engagement", "involvement"],
+      "weight": 5
+    },
+    "GRI 305-1": {
+      "pillar": "S",
+      "description": "Direct greenhouse gas emissions (Scope 1)",
+      "keywords": ["GHG", "emission scope 1", "gas rumah kaca", "carbon footprint", "scope 1 emission"],
+      "weight": 7
+    },
+    "GRI 305-2": {
+      "pillar": "S",
+      "description": "Indirect greenhouse gas emissions (Scope 2)",
+      "keywords": ["GHG", "emission scope 2", "indirect emission", "electricity emission", "scope 2"],
+      "weight": 6
+    },
+    "GRI 301-1": {
+      "pillar": "P",
+      "description": "Material usage reporting",
+      "keywords": ["material use", "material consumption", "penggunaan material", "resource usage"],
+      "weight": 5
+    },
+    "GRI 201-2": {
+      "pillar": "I",
+      "description": "Disclosure of climate-related risks and opportunities",
+      "keywords": ["climate risk", "climate opportunity", "adaptation strategy", "resilience planning"],
+      "weight": 4
+    },
+    "GRI 306-1": {
+      "pillar": "S",
+      "description": "Waste generation and management reporting",
+      "keywords": ["waste generation", "waste management", "limbah", "reduction of waste"],
+      "weight": 5
+    },
+    "GRI 403-1": {
+      "pillar": "S",
+      "description": "Occupational health and safety management system",
+      "keywords": ["health and safety", "occupational safety", "OSH", "safety program"],
+      "weight": 6
+    },
+    "GRI 405-1": {
+      "pillar": "P",
+      "description": "Diversity of governance bodies and employees",
+      "keywords": ["diversity", "gender diversity", "governance diversity", "employee diversity"],
+      "weight": 4
+    },
+    "GRI 102-14": {
+      "pillar": "D",
+      "description": "Statement from senior decision-maker",
+      "keywords": ["statement from CEO", "president message", "from director"],
+      "weight": 3
+    }
+  }
+  
